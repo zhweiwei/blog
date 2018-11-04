@@ -3,7 +3,7 @@
 ## window系统上的安装
 下载git软件，点击[这里](https://www.git-scm.com/download/) ，下载点击安装即可；
 
-![下载界面](./imgage/image_1.jpg)
+![下载界面](./image/image_1.jpg)
 
 ## linux系统上安装
 centos系统上安装
