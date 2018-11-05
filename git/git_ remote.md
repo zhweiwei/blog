@@ -1,8 +1,8 @@
-#git与远程仓库连接
+# git与远程仓库连接
 
 我这里将以与github上的仓库为例，将本地仓库与远程仓库进行连接，如果没有github的账户，请注册一个，[传送门](https://github.com/)
 
-##创建远程仓库
+## 创建远程仓库
 
 1  登陆github，在网站右角上点击+，选择 new repository,
 
@@ -14,7 +14,7 @@
 
 到这里，我们就创建好了一个远程仓库；接下我们将与本地仓库绑定，
 
-##call远程仓库
+## call远程仓库
 
 1 当我们要访问远程仓库，需要自报家名，首先需要配置本地仓库的名称和email；使用config命令；
 
@@ -51,20 +51,20 @@
 
 至此。我们本地仓库与远程仓库通信算是解决了，
 
-##关联远程仓库
+## 关联远程仓库
 
 还记得我们刚刚建的一个远程仓库吗，现在那个远程仓库终于派上了用场，
 
 我们在本地添加一个远程仓库，首先，我们进入远程仓库的界面，复制远程仓库路径,这里需要是clone with ssh模式，如果不是，可以点击use ssh
 
 ![clone](./image/remote/image_git_remote_clone.jpg)
-##git remote
+## git remote
 
 我们回到git 操作台，输入``git remote add origin git@github.com:zhweiwei/blogs.git``,我来解释下这个remote命令，就是在本地添加一个远程模板库，取名origin,从linux命令来说，没有反应就是最好的反应，所以下面没有反应就是表示成功了，
 
 ![remote](./image/remote/image_git_remote_remote.png)
 
-##git pull
+## git pull
 
 还记得我们刚刚创建仓库勾选了一个复选框吗，要是不记得了可以看看上面的图片，由于我们这是第一次与远程合并，首先需要将远程的有的本地没有的合并到本地来，执行``git pull origin master`` ,将远程仓库文件同步到本地。大家对master是不是有点疑惑，当我们创建本地仓库时，git默认给我们创建了一个分支，取名master,执行结果如下表示pull成功了，此时，文件夹会多一个README.md文件。
 
@@ -80,7 +80,7 @@
 ![pullallow](./image/remote/image_git_remote_pullallow.png)
 
 
-##git push
+## git push
 
 如果我们不执行上面的pull命令，直接执行push命令，就会报错。当我们执行完pull后，还记得我们仓库中有两个hello文件不，接下来，我们将这两个文件上传到远程仓库中，使用push命令,在命令行执行``git push -u origin master``，在执行过程中可能会出现下面图1的提示，很正常，这是github需要你去确认下对方的邮箱，去github上确认下即可。
 
