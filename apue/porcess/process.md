@@ -13,17 +13,17 @@ PID(process id)进程的ID，PPID（parent process Id)，父进程的id.（这�
 可以通过getpid()和getppid()获得进程的PID和PPID，
 
 **代码**
-```c
-//pid.cc
-#include <unistd.h>
-#include <stdio.h>
 
-int main()
-{
-    printf("my PID = %d\n",getpid());
-    printf("my PPID = %d \n",getppid());
-}
-```
+	//pid.cc
+	#include <unistd.h>
+	#include <stdio.h>
+
+	int main()
+	{
+  	  printf("my PID = %d\n",getpid());
+  	  printf("my PPID = %d \n",getppid());
+	}
+
 **编译**
 >gcc pid.cc -o pid
 
@@ -37,8 +37,6 @@ int main()
 ## 总结
 
 在这一章节，我们第一次接触进程概念，掌握进程的pid和ppid的意思和如何获取；
-
-
 
 
 
