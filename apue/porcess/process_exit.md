@@ -88,6 +88,7 @@ int main()
 
 ```
 
+**结果**
 
 ![_exit](./image/git_process__exit.gif)
 
