@@ -106,6 +106,10 @@ child pos = 10
 
 ![noshare](./image/image_apue_process_noshare.jpg)
 
+## vfork函数
+
+这里直接提一下，之前说父进程调用了fork函数后，父进程和子进程不知道谁会先执行，但是，如果使用vfork函数调用，子进程会先执行，然后进入调度策略。
+
 ## 总结
 
 1. 回忆dup函数是在一个进程中复制文件描述符
