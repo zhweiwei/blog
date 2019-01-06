@@ -9,3 +9,60 @@ PDO 类型是平凡的(trivial)和标准布局的(standard layout)结合体.
 3. 拥有平凡的拷贝复制函数和移动复制函数符
 4. 不能拥有包含虚函数以及虚继承
 
+##标准布局
+1. 所有的非静态成员用相同的访问权限
+2. 没有虚函数和虚继承
+3. 所有的非静态成员都是标准buju
+4. 所有的基类都是标准布局
+5. 继承类中第一个非静态类型不是基类的类型
+6. 满足下面条件:
+6.1. 基类有非静态成员，派生类没有非静态成员
+6.2. 派生类有非静态成员，且只有一个仅包含静态成员的基类
+
+```c++{.line-numbers}
+//3-6-2.cpp
+#include <iostream>
+
+using namespace std;
+
+struct B1{};
+struct B2{};
+
+struct D1:B1{
+	B1 b;
+	int i;
+};
+
+struct D2:B1{
+	B2 b;
+	int i;
+};
+
+int main(){
+	D1 d1;
+	D2 d2;
+
+	cout <<hex;
+	cout <<reinterpret_cast<long long>(&d1)<<endl;
+	cout <<reinterpret_cast<long long>(&(d1.b))<<endl;
+	cout <<reinterpret_cast<long long>(&(d1.i))<<endl;
+
+	cout <<reinterpret_cast<long long>(&d2)<<endl;
+	cout <<reinterpret_cast<long long>(&(d2.b))<<endl;
+	cout <<reinterpret_cast<long long>(&(d2.i))<<endl;
+	
+}
+
+
+```
+
+```c++ {.line-numbers}
+7ffc5d97a0c0
+7ffc5d97a0c1
+7ffc5d97a0c4
+7ffc5d97a0b0
+7ffc5d97a0b0
+7ffc5d97a0b4
+
+
+```
