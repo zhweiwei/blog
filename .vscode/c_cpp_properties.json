@@ -11,7 +11,8 @@
             "includePath": [
                 "${workspaceFolder}",
                 "D:/include/MinGW/lib/gcc/mingw32/8.2.0/include/*",
-                "D:/include/MinGW/include/*"
+                "D:/include/MinGW/include/*",
+                "D:/include/MinGW/lib/gcc/mingw32/8.2.0/include/c++/*"
             ],
             "cStandard": "c11",
             "cppStandard": "c++17"
@@ -19,4 +20,3 @@
     ],
     "version": 4
 }
-
