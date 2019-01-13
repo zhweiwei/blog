@@ -20,6 +20,10 @@ class Solusion{
         }
 
         return tmpmax;
+        for(int i = 0;i <= rope;i++){
+            cout <<"tmp["<<i<<"] = "<<tmp[i]<<" ";
+        }
+        cout<<endl;
     }
 
     int Smax(int i ,int j){
