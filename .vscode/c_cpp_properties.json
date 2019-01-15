@@ -1,17 +1,20 @@
 {
     "configurations": [
         {
-            "name": "MinGW",
+            "name": "mingw-w64",
             "defines": [
                 "_DEBUG",
                 "UNICODE"
             ],
             "intelliSenseMode": "gcc-x64",
-            "compilerPath": "D:/include/MinGW/bin/gcc.exe",
+            "compilerPath": "D:/include/mingw-w64/mingw64/bin/g++.exe",
             "includePath": [
                 "${workspaceFolder}",
-                "D:/include/MinGW/include/*",
-                "D:/include/MinGW/lib/gcc/mingw32/8.2.0/include/*"
+                "D:/include/mingw-w64/mingw64/include",
+                "D:/include/mingw-w64/mingw64/x86_64-w64-mingw32/include",
+                "D:/include/mingw-w64/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include",
+                "D:/include/mingw-w64/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/tr1",
+                "D:/include/mingw-w64/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/ssp"
             ],
             "cStandard": "c11",
             "cppStandard": "c++11"

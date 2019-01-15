@@ -21,7 +21,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "g++",
             "type": "shell",
             "group": {
                 "kind": "build",
@@ -36,11 +36,11 @@
             "windows": {
                 "command": "g++",
                 "args": [
-                    "-ggdb",
+                    "-g",
                     "\"${file}\"",
                     "--std=c++11",
                     "-o",
-                    "\"${fileDirname}\\${fileBasenameNoExtension}.exe\""
+                    "\"${fileDirname}\\test.exe\""
                 ]
             }
         }
