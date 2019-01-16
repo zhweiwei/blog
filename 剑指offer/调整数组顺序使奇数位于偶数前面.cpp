@@ -12,15 +12,30 @@ public:
         int size = array.size();
         int i,j ,tmp;
         for( i = 0;i < size;i++){
-            if(array[i]%2 == 1){
+            while(i <size && Comp(array[i]))
+            i++;
+            j = i+1;
+            while(j< size&& !Comp(array[j]))
+            j++;
+
+            if( i < size && j < size){
                 tmp = array[i];
-                for(j = i;j-1>=0;j--){
-                    if(array[j-1]%2 == 1)
-                    break;
-                    array[j] = array[j-1];
-                }
+                array[i] = array[j];
                 array[j] = tmp;
-            }
+            }           
         }
     }
+
+    bool Comp(int val){
+        return val %2;
+    }
 };
+
+int main(){
+    vector<int> a = {2,4,3,1,5,6,4,7};
+    Solution s;
+    s.reOrderArray(a);
+    for(auto val:a)
+    cout<<val<<" ";
+    cout <<endl;
+}
