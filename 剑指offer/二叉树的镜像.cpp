@@ -16,6 +16,16 @@ struct TreeNode {
 class Solution {
 public:
     void Mirror(TreeNode *pRoot) {
+        if(pRoot != nullptr){
+            TreeNode *t;
+            t = pRoot->right;
+            pRoot->right = pRoot->left;
+            pRoot->left = t;
+
+            Mirror(pRoot->left);
+            Mirror(pRoot->right);
+        }
+
 
     }
 };
