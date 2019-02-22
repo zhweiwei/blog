@@ -76,9 +76,7 @@ RAND_MAX is a constant defined in <cstdlib>.
 
 A typical way to generate trivial pseudo-random numbers in a determined range using rand is to use the modulo of the returned value by the range span and add the initial value of the range:
 
-1
-2
-3
+
 v1 = rand() % 100;         // v1 in the range 0 to 99
 v2 = rand() % 100 + 1;     // v2 in the range 1 to 100
 v3 = rand() % 30 + 1985;   // v3 in the range 1985-2014 

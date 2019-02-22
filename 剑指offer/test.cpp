@@ -1,43 +1,27 @@
-class String{
-    public:
-    String ();
+#include <stdio.h>
 
-    explicit String(const char* p);
-
-    String (const String&);
-    String& operator=(const String&);
-
-    String (String && x);
-    String& operator=(String&& x);
-
-    ~String(){if(short_max < sz) delete[] ptr;}
-
-    char& operator[](int n){return ptr[n];};
-    char operator[](int n)const{return ptr[n];}
-
-    char& at(int n){check(n);return ptr[n];}
-    char at(int n)const{check(n);return ptr[n];}
-
-    int size()const{return sz;}
-
-    int capacity()const{
-        return 
+void sortnumber(int *arr,int n){
+    int i ,j;
+    int tmp;
+    for(i = 0;i < n;i++){
+        for(j = 0;j < n-i-1;j++){
+            if(arr[j]> arr[j+1]){
+                tmp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j] = tmp;
+            }
+        }
     }
+}
 
-    private:
-    static const int short_max = 15;
-    int sz;
-    union{
-        int space;
-        int ch[short_max+1];
-    }
-
-    void check(int n)const{
-        if(n < 0 || sz <= n)
-        throw std::out_of_range("String::at()");
-
-        void copy_from(const String& x);
-        void move_from(String& x);
-    }
-};
-
+int main(){
+    int arr[10]; //用于存输入的十个数
+    int i ;
+    printf("请输入10个数：");
+    for(i = 0; i < 10;i++) //依次存储十个数
+    scanf("%d",&arr[i]);
+    sortnumber(arr,10);
+    printf("排序后的数字：");
+    for(i = 0;i < n;i++)
+    printf("%d  ",arr[i]);
+}
