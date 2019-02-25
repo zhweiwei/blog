@@ -26,7 +26,7 @@ namespace Distrabute{
         
         private:
         Func func_;
-        stdz::thread thread_;
+        std::thread thread_;
     };
 }
 

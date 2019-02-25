@@ -1,32 +1,30 @@
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
-int test(int *arr,int count, int num){ //用于检测生成的随机数之前是否已经生成过
-    int i = 0;
-
-    for(;i <count;i++){
-        if(arr[i] == num)
-        return -1;
-    }
-
-    return count;
-}
+#define N 100
 
 int main(){
-    int arr[5] ; //存储抽奖结果
-    int i = 0;
-    while(i < 5){
-        int num = rand()%100 +1; //随机生成1-100的数
-        int re = test(arr,i,num);
-        if(re != -1){
-            arr[i] = num;
-            i++;
-        }
-    }
+    int count;
+    printf("请输入红包金额：");
+    scanf("%d",&count);
 
-    printf("生成的随机数是：");
-
-    for(i = 0;i < 5;i++){
-        printf("%d ",arr[i]);
+    int n;
+  //  n = rand()%((int)sqrt(count)) +1; //随机生成红包个数，这个算法可以自己想一个
+    n = rand()%(count) +1;
+    int i;
+    double a[N] = {0}; //初始化为0
+    for(i = 0;i < n-1;i++){
+        a[i] = rand()%(count*100)/100.0;
+        count -=a[i];  //剩余红包金额
+        if(count == 0)
+        break;
     }
+    a[i] = count;
+
+    printf("生成的红包数量%d:分别为:",n);
+    for(i = 0;i < n;i++)
+    printf("%.2lf ",a[i]);
+    
 }
