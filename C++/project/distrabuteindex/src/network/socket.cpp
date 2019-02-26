@@ -76,26 +76,114 @@ bool Socket::Bind(uint16_t port)
 	return !bind(fd_, (const struct sockaddr *)&server, sizeof(server));
 }
 
-uint32_t Socket::Write(const char* data,uint32_t len,bool *blocked){
-    uint32_t written = 0;
-     while(written < len){
-         ssize_t r = write(fd_,data+written,len- written);
-         if(r > 0){
-             written += r;
-             continue;
-         }else if(r = -1){
-             if(errno == EINTR)
-             continue;
-             if(errno == EAGAIN || errno == EWOULDBLOCK){
-                 *blocked = true;
-                 break;
-             }
-         }
-         printf("write errno :%s :(\n",strerrnor(errno));
-         break;
-     }
-     return written;
+bool Socket::Listen()
+{
+	return !listen(fd_, 32);
 }
 
-uint32_t Socket::Read(char *data,uint32_t len,bool *blocked)
+bool Socket::SetOption(int value, bool flag)
+{
+	return !setsockopt(fd_, SOL_SOCKET, value, &flag, sizeof(flag));
+}
+
+bool Socket::GetOption(int value, int *ret)
+{
+	socklen_t len = sizeof(*ret);
+	return !getsockopt(fd_, SOL_SOCKET, value, ret, &len);
+}
+
+bool Socket::SetResuseAddress()
+{
+	int flag = 1;
+	return !setsockopt(fd_, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag));
+}
+
+int Socket::Accept()
+{
+	struct sockaddr_in client;
+	memset(&client, 0, sizeof(client));
+	socklen_t len = sizeof(client);
+	int fd = accept(fd_, (struct sockaddr *)&client, &len);
+	return fd;
+}
+
+bool Socket::GetPeerName(EndPoint *endpoint)
+{
+	struct sockaddr_in addr;
+	memset(&addr, 0, sizeof(addr));
+	socklen_t len = sizeof(addr);
+	if (!getsockname(fd_, (struct sockaddr *)&addr, &len)) {
+		*endpoint = EndPoint(ntohs(addr.sin_port), addr.sin_addr.s_addr);
+		return true;
+	}
+	return false;
+}
+
+bool Socket::GetSockName(EndPoint *endpoint)
+{
+	struct sockaddr_in addr;
+	memset(&addr, 0, sizeof(addr));
+	socklen_t len = sizeof(addr);
+	if (!getpeername(fd_, (struct sockaddr *)&addr, &len)) {
+		*endpoint = EndPoint(ntohs(addr.sin_port), addr.sin_addr.s_addr);
+		return true;
+	}
+	return false;
+}
+
+bool Socket::AddFlag(int flag)
+{
+	int value = fcntl(fd_, F_GETFL, 0);
+	assert(value != -1);
+	return !fcntl(fd_, F_SETFL, value | flag);
+}
+
+bool Socket::SetNonBlock()
+{
+	int value = fcntl(fd_, F_GETFL, 0);
+	assert(value != -1);
+	return !fcntl(fd_, F_SETFL, value | O_NONBLOCK);
+}
+
+uint32_t Socket::Write(const char *data, uint32_t len, bool *blocked)
+{
+	uint32_t written = 0;
+	for (; written < len;) {
+		ssize_t r = write(fd_, data + written, len - written);
+		if (r > 0) {
+			written += r;
+			continue;
+		} else if (r == -1) {
+			if (errno == EINTR)
+				continue;
+			if (errno == EAGAIN || errno == EWOULDBLOCK) {
+				*blocked = true;
+				break;
+			}
+		}
+		printf("write error, %s :(\n", strerror(errno));
+		break;
+	}
+	return written;
+}
+
+uint32_t Socket::Read(char *data, uint32_t len, bool *blocked)
+{
+	uint32_t has_read = 0;
+	ssize_t r;
+	for (; has_read < len && (r = read(fd_, data + has_read, len - has_read));) {
+		if (r == -1) {
+			if (errno == EINTR)
+				continue;
+			if (errno == EAGAIN || errno == EWOULDBLOCK)
+				*blocked = true;
+			else
+				printf("read error, %s :(\n", strerror(errno));
+			break;
+		}
+		has_read += r;
+	}
+	return has_read;
+}
+
 } // Distrabute

@@ -11,29 +11,30 @@
 
 namespace Distrabute
 {
-    class Socket{
-        public:
-        Socket();
+    class Socket
+{
+	public:
+		Socket();
 
-        ~Socket();
+		Socket(int fd);
 
-        Socket(int fd);
+		~Socket();
 
-        int fd()const;
+		int fd() const;
 
-        bool Valid()const;
+		bool Valid() const;
 
-        bool Create();
+		bool Create();
 
-        bool Close();
+		bool Close();
 
-        bool Connect(const EndPoint &end_point);
+		bool Connect(const EndPoint &end_point);
 
-        bool Bind(uint16_t port);
+		bool Bind(uint16_t port);
 
-        bool Listen();
+		bool Listen();
 
-        int Accept();
+		int Accept();
 
 		uint32_t Write(const char *data, uint32_t len, bool *blocked);
 
@@ -55,7 +56,7 @@ namespace Distrabute
 
 	private:
 		int      fd_;
-    };
+};
 } // Distrabute
 
 
