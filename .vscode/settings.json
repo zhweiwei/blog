@@ -31,7 +31,22 @@
         "tuple": "cpp",
         "typeinfo": "cpp",
         "utility": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "chrono": "cpp",
+        "cmath": "cpp",
+        "condition_variable": "cpp",
+        "csignal": "cpp",
+        "cstddef": "cpp",
+        "ctime": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "functional": "cpp",
+        "memory": "cpp",
+        "mutex": "cpp",
+        "ratio": "cpp",
+        "thread": "cpp",
+        "cinttypes": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.intelliSenseEngineFallback": "Disabled"
 }

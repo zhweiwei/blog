@@ -22,8 +22,8 @@ namespace Distrabute{
     }
 
     char* Buffer::data()const{
-        data_[end] = '\0';
-        return data_ + end_;
+        data_[end_] = '\0';
+        return data_ + beg_;
     }
 
     char* Buffer::begin()const{
@@ -38,7 +38,7 @@ namespace Distrabute{
         return cap_ - end_;
     }
 
-    void Buffer::Clear{
+    void Buffer::Clear(){
         beg_ = 0;
         end_ = 0;
         size_ = 0;

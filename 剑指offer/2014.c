@@ -1,3 +1,98 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+
+#define LEN sizeof(struct node)
+#define LN sizeof(struct counter)
+
+struct node{
+  int count;
+  char a[50];
+  struct node * next;
+};
+
+struct counter{
+  char name[20];
+  int count;
+  struct node * no;
+  struct counter *next;
+}
+
+int main(){
+  struct counter *head,
+  char name[20];
+  printf("请输入账户");
+  scanf("%s",name);
+
+  struct counter *p;
+
+  p =head;
+
+  while(p != NULL){
+    if(compare(p->name,name) == 0)
+    break;
+    p = p->next;
+  }
+
+  if(p == NULL){
+    printf("账户不存在");
+    return 0;
+  }
+
+  while(1){
+    printf("输入值 0表示退出，1表示存钱，2，表示取钱，3表示查询记录，4查询余额");
+    int n ;
+    int k;
+
+    scanf("%d",&n);
+    switch (n)
+    {
+      case 0:
+        printf("用户退出");
+        return 0;
+      case 1:
+        printf("输入存入金额")；
+        scanf("%d",k);
+        p->count += k;
+        struct node * w = (struct node*)malloc(LEN);
+        w->count = k;
+        w->a = "存入金额为";
+        w->next = p->no;
+        p->no = w;
+        break;
+      
+      case 2:
+         printf("输入存入金额")；
+        scanf("%d",k);
+        if(p->count < k){
+          printf("金额不足");
+          return 0;
+        }
+        p->count -= k;
+        struct node * w = (struct node*)malloc(LEN);
+        w->count = k;
+        w->a = "取出金额为";
+        w->next = p->no;
+        p->no = w;
+        break;
+
+      case 3:
+       struct node *w;
+       w = p->no;
+       while(w){
+         printf("%s %d",w->a,w->count);
+         w = w->next;
+       } 
+        break;
+
+      case 4:
+        printf("用户余额为%d",p->count);
+        break;
+      default:
+        break;
+    }
+  }
+}
 /*
 
 第三题
@@ -49,11 +144,6 @@ struct Node{
     struct Node * next;
 };
 
-
-struct Node * find(struct Node * head,char cout*){
-    
-}
-
 int main(){
     char formcout[20],tocout[20];
     int number;
@@ -65,6 +155,39 @@ int main(){
     printf("请输入转入账号:")；
     scanf("%s",tocout);
 
+    struct Node * p ,*q;
+    p = head;
+    while(p){
+        if(compare(p->cout,formcout) == 0)
+        break;
 
+        p = p->next;
+    }
 
-}
+    if(!p){
+        printf("no find user!");
+        return ;
+    }
+
+    if(p->number < number){
+        printf("金额不足");
+        return 0;
+    }
+  
+    q  = head;
+    while(q){
+        if(compare(q->cout,formcout) == 0)
+        break;
+
+        q= q->next;
+    }
+
+    if(!q){
+        printf("no find user!");
+        return ;
+    }
+
+    p->number -= number;
+    q->number += number;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+
+} 

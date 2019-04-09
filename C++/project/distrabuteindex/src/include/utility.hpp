@@ -7,6 +7,7 @@
 #define __UTILITY_HPP__
 
 #include <functional>
+#include <inttypes.h>
 
 namespace Distrabute{
     class noCopy{

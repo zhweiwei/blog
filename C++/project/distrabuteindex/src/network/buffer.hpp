@@ -23,6 +23,8 @@ namespace Distrabute{
 
         char* data() const;
 
+        char* begin() const;
+        
         char* end() const;
 
         uint32_t space() const;

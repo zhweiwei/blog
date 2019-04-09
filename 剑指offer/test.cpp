@@ -1,27 +1,35 @@
-#include <stdio.h>
+#include <deque>
+#include <vector>
+#include <iostream>
 
-void sortnumber(int *arr,int n){
-    int i ,j;
-    int tmp;
-    for(i = 0;i < n;i++){
-        for(j = 0;j < n-i-1;j++){
-            if(arr[j]> arr[j+1]){
-                tmp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j] = tmp;
-            }
-        }
-    }
+using namespace std;
+
+void getValue(const vector<int> val,int size,vector<int>& reval){
+	deque<int> tmp;
+	
+	if(val.size() <size)
+	return ;
+
+	for(int i = 0;i < val.size();i++){
+		while(!tmp.empty() && val[tmp.back()] < val[i])
+		tmp.pop_back();
+
+		tmp.push_back(i);
+		if(i - tmp.front()>= size)
+		tmp.pop_front();
+
+		if(i < size-1)
+		continue;
+
+		reval.push_back(val[tmp.front()]);
+	}
 }
 
 int main(){
-    int arr[10]; //用于存输入的十个数
-    int i ;
-    printf("请输入10个数：");
-    for(i = 0; i < 10;i++) //依次存储十个数
-    scanf("%d",&arr[i]);
-    sortnumber(arr,10);
-    printf("排序后的数字：");
-    for(i = 0;i < n;i++)
-    printf("%d  ",arr[i]);
+	vector<int> a{1,2,5,3,6,56,7,4,6,6,3,3,3,7,7,8};
+	vector<int> b;
+	getValue(a,3,b);
+	
+	for(auto val : b)
+	cout <<val<<" ";
 }

@@ -1,30 +1,111 @@
-
-#include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-
-#define N 100
+#include <stdio.h>
 
 int main(){
-    int count;
-    printf("请输入红包金额：");
-    scanf("%d",&count);
+  char a = '0';
+  char b= '8';
+  printf("a = %d\n",(int)a);
+  printf("b -a = %d\n",b - a);
+}
 
-    int n;
-  //  n = rand()%((int)sqrt(count)) +1; //随机生成红包个数，这个算法可以自己想一个
-    n = rand()%(count) +1;
-    int i;
-    double a[N] = {0}; //初始化为0
-    for(i = 0;i < n-1;i++){
-        a[i] = rand()%(count*100)/100.0;
-        count -=a[i];  //剩余红包金额
-        if(count == 0)
-        break;
+void sort(struct student* head){
+  struct student * p,*q,*a= NULL;
+  p = head;
+  while(p){
+    q = p;
+    p = p->next;
+    q->next =NULL;
+    if(a ==NULL){
+      a = q;
+    }else{
+      if(a->sore > q->sore){  //判断插入的是否小于头指针
+        q->next = a;
+        a = q;
+      }else{
+        m = a;
+        while(m->next && m->next->sore >= q->sore) //寻找next的值小于q的值
+        m = m->next;
+
+        q->next = m->next;
+        m->next = q;
+      }      
     }
-    a[i] = count;
+  }
+  head = a;
+}
 
-    printf("生成的红包数量%d:分别为:",n);
-    for(i = 0;i < n;i++)
-    printf("%.2lf ",a[i]);
-    
+struct student* sort(struct student* a,struct student* b){
+  struct student *head,*p,*q,*m,*tail;
+  p = a;
+  q = b;
+  while(p && q){
+    if(p->sore < q->sore){
+      m = p;
+      p =p->next;
+    }else{
+      m = q;
+      q = q->next;
+    }
+
+    if(head == NULL){
+     tail = head = m;
+    }else{
+      tail->next = m;
+      tail = tail->next;
+    }
+  }
+
+  if(p)
+  tail->next = p;
+
+  if(q)
+  tail->next = q;
+
+  return head;
+}
+
+struct student{
+  char no[20],
+  int sore,
+  struct student* next;
+}
+
+int main(){
+  struct student * a,*b;
+  struct student *p,*q,*m;
+
+  p = a;
+  while(p){
+    m = p;
+    p = p->next;
+    q = b;
+    while(q && strcmp(m->no,q->no) != 0)    //从b的头指针开始遍历，当q为NULL或者相等是跳出循环
+    q = q->next;
+
+    if(q){  //表示q不为NULL，即存在相同
+      if(m == a){   //判断是否为a的头指针
+        a = a->next;
+        free(m);
+      }else{
+        
+        struct student * n ;
+        n = a;
+        while(n->next != m) //找到删除的前一个节点
+        n = n->next;
+
+        n->next = m->next;
+        free(m);
+      }
+    }
+  }
+}
+
+int  main(){
+  int a,b,result;
+  result = 0;
+  while(a>0){
+    result = result*10 + a%10;
+    a /=10;
+  }
+  printf("%d",result);
 }
